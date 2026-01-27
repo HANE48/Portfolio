@@ -40,6 +40,7 @@ public class Main {
 		
 		for(int i=0 ; i<20 ; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
+			@SuppressWarnings("unused")
 			String name = st.nextToken();
 			avg = Double.parseDouble(st.nextToken());
 			String score = st.nextToken();
