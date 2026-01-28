@@ -12,34 +12,25 @@ import java.util.Scanner;
 
 public class Ex2_wok {
 	
-	public static int fib(int n) {
-		if(n == 0) {
-			return 0;
-		}else if(n == 1) {
-			return 1;
-		}
-		else {
-			
-			return fib(n-1) + fib(n-2);
-		}
-	}
-	
-	
 	public static void main(String[] args) {		//1 1 2 3 5 8 13 21 35
-		int n, i=1, j=1;
+		int n, i=1, j=0, n3=0;
 		
 		Scanner sc = new Scanner(System.in);
 		n = sc.nextInt();
 		
 		for(int k=0 ; k<n ; k++) {
-			if(k<=1) {
-				System.out.print(1 + " ");
-			}else {
-				int next = i + j;
-				System.out.print(next + " ");
-				i = j;
-				j = next;
-			}
+//			if(k<=1) {
+//				System.out.print(1 + " ");
+//			}else {
+//				int next = i + j;
+//				System.out.print(next + " ");
+//				i = j;
+//				j = next;
+//			}
+			j = n3;
+			n3 = i;
+			i = j + n3;
+			System.out.print(n3 + " ");
 			
 		}//for
 		

@@ -45,6 +45,17 @@ public class Ex3_work {
 		}
 		
 		System.out.println(n1*n2/gcd(n1,n2));
+		
+		for(int i=1 ; i<= n1 * n2 ; i++) {
+			
+			if(i % n1 == 0 && i % n2 ==0) {
+				System.out.println(i);
+				break;
+			}
+			
+		}
+		
+		
 		sc.close();
 	}//main
 

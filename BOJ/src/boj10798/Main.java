@@ -24,34 +24,17 @@ public class Main {
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringTokenizer st;
 		String[][] arr = new String[16][16];
 		
-		for(int i=0 ; i<16 ; i++) {
-			for(int j=0 ; j<16 ; j++) {
-				arr[i][j] = "-";
-			}
-		}//for
-		
-		
 		for(int i=0 ; i<5 ; i++) {
-			st = new StringTokenizer(br.readLine());
-			
-			for(int j=0 ; j<15 ; j++) {
-				if(st.hasMoreTokens()) {
-					arr[i][j] = st.nextToken().charAt(i);					
-				}else {
-					break;
-				}
-			}
-		}//for
+			String s = br.readLine();
+			arr[i] = s.split(s);
+		}
 		
 		
 		for(int i=0 ; i<15 ; i++) {
 			for(int j=0 ; j<5 ; j++) {
-				if(arr[j][i]=="-") {
-					break;
-				}
+				
 				bw.append(arr[j][i]);
 			}
 		}//for
