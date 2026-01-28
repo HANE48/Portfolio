@@ -5,7 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.StringTokenizer;
+
 
 /*
  * 한 줄의 단어는 글자들을 빈칸 없이 연속으로 나열해서 최대 15개의 글자들로 이루어진다. 또한 만들어진 다섯 개의 단어들의 글자 개수는 서로 다를 수 있다. 
@@ -24,20 +24,30 @@ public class Main {
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		String[][] arr = new String[16][16];
+		char[][] arr = new char[6][16];
+		int max = 0;
+		
 		
 		for(int i=0 ; i<5 ; i++) {
 			String s = br.readLine();
-			arr[i] = s.split(s);
-		}
-		
-		
-		for(int i=0 ; i<15 ; i++) {
-			for(int j=0 ; j<5 ; j++) {
-				
-				bw.append(arr[j][i]);
+			if(max < s.length()) {
+				max = s.length();
 			}
-		}//for
+			for(int j=0 ; j<s.length() ; j++) {
+				arr[i][j] = s.charAt(j);
+			}//inner
+			
+		}//outer
+		
+		for(int i=0 ; i<max ; i++) {
+			for(int j=0 ; j<5 ; j++) {
+				if(arr[j][i]=='\0') {
+					continue;
+				}
+				bw.append(Character.toString(arr[j][i]));
+			}//inner
+		}//outer
+		
 		
 		bw.flush();
 		bw.close();
