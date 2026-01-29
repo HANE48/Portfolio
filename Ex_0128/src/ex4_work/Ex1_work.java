@@ -26,17 +26,15 @@ public class Ex1_work {
 			money /= 10;
 			money *= 10;
 		}
+		
+		//int money = new Random().nextInt(500)+1;
+		//money *= 10;
+		
 		System.out.println("난수로 만든 돈: " + money);
 		
 		for(int i=0 ; i<count.length ; i++) {
-			if(money % coin[i]  == 0) {
-				count[i] = money / coin[i];
-				money %= coin[i];
-			}
-			if(money % coin[i] > 0) {
-				count[i] = money / coin[i];
-				money %= coin[i];
-			}
+			count[i] = money / coin[i];
+			money %= coin[i];
 		}//for
 		
 		
