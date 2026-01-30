@@ -27,15 +27,12 @@ public class Ex3_work {
 		System.out.print("등록 인원: ");
 		int n = sc.nextInt();
 		
-		String[] s = {"수학", "영어"};
-		String[][] arr = new String[n][3];
+		String[] s = {"이름: ", "수학: ", "영어: "};			//기존에 과목만 있던 배열을 이름까지 추가함
+		String[][] arr = new String[n][s.length];
 		
-		for(int i=0 ; i<arr.length ; i++) {
-			System.out.print("이름: ");
-			arr[i][0] = sc.next();
-			
-			for(int j=1 ; j<arr[i].length ; j++) {
-				System.out.print(s[j-1] + " 점수: ");
+		for(int i=0 ; i<arr.length ; i++) {				//이름을 배열에 넣으면서 이름 입력받는 부분을 삭제함
+			for(int j=0 ; j<arr[i].length ; j++) {	
+				System.out.print(s[j]);
 				arr[i][j] = sc.next();
 			}//inner
 			System.out.println("-------------");
