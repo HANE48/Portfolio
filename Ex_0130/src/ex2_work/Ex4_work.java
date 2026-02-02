@@ -13,8 +13,24 @@ public class Ex4_work {
 		int[] lotto = new int[6];
 		Random r = new Random();
 		
+		outer : for(int i=0 ; i<lotto.length ; ) {
+			
+			lotto[i] = r.nextInt(6) + 1;
+			
+			for(int j=0 ; j<i ; j++) {
+				if(lotto[i] == lotto[j]) {
+					continue outer;
+				}
+			}
+			System.out.println(lotto[i] + " ");
+			i++;
+		}//for
+		
+		
+		
+		
 		for(int i=0 ; i<lotto.length ; i++) {
-			lotto[i] = new Random().nextInt(45)+1;
+			lotto[i] = r.nextInt(45)+1;
 		}
 		
 		for(int i=0 ; i<lotto.length ; i++) {
