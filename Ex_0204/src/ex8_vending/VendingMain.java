@@ -10,15 +10,14 @@ import java.util.Scanner;
  * select: fanta
  * fanta is selected 
  * 잔액 200원을 반환합니다.
- * 
- * 
  */
 
 public class VendingMain {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		String[][] arr = { {"coke", "1000"}, {"fanta","800"}, {"orange", "900"}};
+		String[][] arr = { {"coke", "1000"},
+				{"fanta","800"}, {"orange", "900"}};
 		
 		System.out.print("insert coin: ");
 		Vending v = new Vending(arr, sc.nextInt());
