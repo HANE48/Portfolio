@@ -42,8 +42,5 @@ public class ThreadList implements Runnable {	// 3초마다 리스트에 단어 
 	}
 
 	
-	
-	
-	
 }
 

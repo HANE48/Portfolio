@@ -36,7 +36,7 @@ public class InputClass implements Runnable{
 			}
 			
 			if(list.size() == 0) {
-				System.out.println("모든 단어를 삭제했습니다. 프로그램을 종료합니다.");
+				System.out.println("모든 단어를 제거했습니다. 프로그램을 종료합니다.");
 				break;
 			}
 			
