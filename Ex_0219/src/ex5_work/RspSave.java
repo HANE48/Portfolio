@@ -11,7 +11,7 @@ public class RspSave implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
-	private HashMap<String, int[]> map = new HashMap<String, int[]>();
+	private HashMap<String, int[]> map;
 	private File f = null;
 	public RspSave(File f){
 		this.f = f;
