@@ -38,6 +38,8 @@ public class RspMain {
 			String sel = sc.next();		//r s p 중 하나를 입력받음
 			String res = rsp[new Random().nextInt(3)];
 			
+			
+			
 			if(sel.equals("r") && res.equals("r") 
 					|| sel.equals("s") && res.equals("s") 
 					|| sel.equals("p") && res.equals("p")) {	//비긴경우
