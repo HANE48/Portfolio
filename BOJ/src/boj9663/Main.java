@@ -5,48 +5,52 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-
+	
+	//1차원 배열로 만들어 arr[i] = j 일때 i행 j열에 퀸이 있음을 나타냄
+	//같은 행에 퀸이 여러개 놓이는 경우는 배제하고 시작할 수 있음
 	static int[] arr;
 	static boolean[][] visit;
 	static int count = 0;
+	static int n;
 	
-	public static void nQueen(int n, int depth) {
-		
+	public static void dfs(int depth) {
 		if(depth == n) {
 			count++;
-			return ;
+			return;
 		}
 		
 		for(int i=0 ; i<n ; i++) {
-			arr[depth] = i;				//인덱스를 열, 값을 행으로 취급
-			if(possibility(depth)) {
-				nQueen(n, depth+1);
+			arr[depth] = i;
+			if(isPossible(depth, i)) {
+				dfs(depth+1);
 			}
 		}
 		
+		
 	}
 	
-	public static boolean possibility(int col) {
-		for(int i=0 ; i<col ; i++) {
-			if(arr[col] == arr[i]) {
-				return false;		//해당열의 행과 i열의 행이 일치할 경우
-			}else if(Math.abs(col-i) == Math.abs(arr[col]-arr[i])) {
-				return false;		//열의 차와 행의 차가 같을 경우가 대각선에 놓인 경우
-			}
 	
-		}//for
+	static boolean isPossible(int row, int col ) {
+		for(int i=0 ; i<row ; i++) {
+			if(arr[i] == col) {
+				return false;
+			}
+			if(Math.abs(row - i) == Math.abs(col - arr[i])) {
+				return false;
+			}
+		}
 		
 		return true;
-	}//possibility
-	
-	
+	}
+
+
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		int n = Integer.parseInt(br.readLine());
+		n = Integer.parseInt(br.readLine());
 		arr = new int[n];
 
-		nQueen(n, 0);
+		dfs(0);
 		System.out.println(count);
 		
 	}//main
