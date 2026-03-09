@@ -1,0 +1,17 @@
+Column Name		Data Type		Nullable	Default	Primary Key
+EMPLOYEE_ID		NUMBER(6,0)	No		-		1
+FIRST_NAME		VARCHAR2(20)	Yes		-		-
+LAST_NAME		VARCHAR2(25)	No		-		-
+EMAIL			VARCHAR2(25)	No		-		-
+PHONE_NUMBER		VARCHAR2(20)	Yes		-		-
+HIRE_DATE			DATE			No		-		-
+JOB_ID			VARCHAR2(10)	No		-		-
+SALARY			NUMBER(8,2)	Yes		-		-
+COMMISSION_PCT	NUMBER(2,2)	Yes		-		-
+MANAGER_ID		NUMBER(6,0)	Yes		-		-
+DEPARTMENT_ID		NUMBER(4,0)	Yes		-		-
+
+
+COMMISSION_PCT: 보너스
+MANAGER_ID: 상사번호
+DEPARTMENT_ID: 부서번호

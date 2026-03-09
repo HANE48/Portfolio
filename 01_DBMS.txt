@@ -1,0 +1,38 @@
+-- 관계형 데이터베이스 관리 시스템(RDBMS)
+
+1. SQL문(Query)문
+-- SQL문은 대소문자를 구별하지 않음
+-- 한줄, 여러줄에 걸쳐 작성할 수 있다.
+
+1) SQL문장의 종류
+	- DML: Data Manipulation Langage: 데이터 조작어
+	(SELECT, INSERT, UPDATE, DELETE를 가지는 문장)
+
+	- DDL(Data Definition Language): 데이터 정의어
+	(CREATE, ALTER, DROP, RENAME 등을 가지는 문장)
+	
+	- DCL(Data Control Language): 데이터 제어어
+	(GRANT, REVOKE등을 가지는 문장)
+
+	CRUD(Create Read Update Delete)의 줄임말
+	(DML과 DDL의 Create가 자주 쓰임)
+
+* SELECT 문
+-- 사원테이블의 모든 자원을 조회
+SELECT * FROM EMPLOYEES;
+
+-- 사번, 이름, 입사일, 급여 순으로 조회
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE, SALARY 
+FROM EMPLOYEES;
+
+-- 사번, 이름, 직종, 급여, 보너스, 보너스 금액 순으로 조회
+SELECT EMPLOYEE_ID, FIRST_NAME, JOB_ID, SALARY, COMMISSION_PCT, 
+commission_pct * salary AS comm
+FROM EMPLOYEES;
+'AS'는 생략하여 작성가능
+
+-- distinct : 중복을 제거하는 명령어
+SELECT DISTINCT job_id FROM employees;
+
+-- 부서번호를 중복없이 출력
+SELECT DISTINCT department_id FROM employees

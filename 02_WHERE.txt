@@ -1,0 +1,192 @@
+-- WHERE절
+-- 특정한 조건에 맞는 내용을 검색하는 명령어
+
+-- 사원테이블에서 성이 Smith인 사원의 정보를 
+   사번, 성, 이름, 급여 순으로 출력
+SELECT employee_id, first_name, last_name, salary
+FROM EMPLOYEES
+WHERE last_name = 'Smith'
+
+-- 이름이 michael인 사원의 사번, 이름, 월급, 부서번호를 출력
+SELECT employee_id, first_name, salary, department_id
+FROM EMPLOYEES
+WHERE first_name = 'Michael';
+
+-- 월급이 10000이상인 사원들의 정보를 이름, 급여 순으로 출력
+SELECT first_name, salary
+FROM EMPLOYEES
+WHERE salary >= 10000;
+>, >=, <, <=, =, !=(<>) 의 연산자 사용가능
+
+-- 월급이 5000초과인 사원들의 사번, 이름, 성, 급여를 출력
+SELECT employee_id, first_name, last_name, salary
+FROM EMPLOYEES
+WHERE salary > 5000;
+
+-- 사번이 150이상인 사원들의 사번, 성, 입사일을 조회
+SELECT employee_id, last_name, hire_date
+FROM EMPLOYEES
+WHERE employee_id >= 150;
+
+-- 입사일이 2006/01/01 이후에 입사한 사원들의 사번, 이름, 성, 입사일을 출력
+SELECT employee_id, first_name, last_name, hire_date
+FROM EMPLOYEES
+WHERE hire_date > '01/01/2006';
+
+-- 직종이 sa_rep인 사원들의 모든 정보를 출력
+SELECT * FROM EMPLOYEES
+WHERE job_id = 'SA_REP';
+
+-- 보너스를 받지 않는 사원들의 정보를 출력
+SELECT * FROM EMPLOEYES
+WHERE commission_pct is null;
+
+-- 보너스를 받는 사원들의 정보를 출력
+SELECT * FROM EMPLOYEES
+WHERE commission_pct is NOT NULL;
+
+-- 직속상사가 없는사람들의 모든 정보를 조회
+SELECT * FROM EMPLOYEES
+WHERE manager_id is null;
+
+-- 급여가 5000을 초과하면서 10000이하인 사원들의 사번, 이름, 급여를 조회
+SELECT employee_id, first_name, salary
+FROM EMPLOYEES
+WHERE salary > 5000 AND salary <= 10000;
+
+논리 연산자 : AND, OR
+ 
+-- 급여가 10000이상 15000미만인 사원의 모든 정보 조회
+SELECT * FROM EMPLOYEES
+WHERE salary >= 10000 AND salary < 15000;
+
+-- 급여가 5000미만이거나 20000이상인 사원들의 모든 정보 조회
+SELECT * FROM EMPLOYEES
+WHERE salary < 5000 OR salary >= 20000;
+
+-- 05, 06년 입사자의 모든 정보를 출력
+SELECT * FROM EMPLOYEES
+WHERE hire_date >= '01/01/2005' AND hire_date <= '12/31/2006';
+
+-- 직종이 SA_MAN 이거나 IT_PROG 인 사원들의 사번, 이름, 직종을 조회
+SELECT employee_id, first_name, job_id
+FROM EMPLOYEES
+WHERE job_id = 'SA_MAN' OR job_id = 'IT_PROG';
+
+-- IN 연산자: OR연산을 대체 괄호 안의 내용들로 비교함 / 검색을 원하는 목록에서 정확히 일치하는 값을 찾아야 할 때 사용
+-- 직종이 SA_MAN 이거나 IT_PROG 인 사원들의 사번, 이름, 직종을 조회
+SELECT employee_id, first_name, job_id
+FROM EMPLOYEES
+WHERE job_id IN('SA_MAN', 'IT_PROG'); 
+
+-- 사번이 100, 102, 104, 106번인 사원들의 모든 정보를 출력
+SELECT * FROM EMPLOYEES
+WHERE employee_id IN(100, 102, 104, 106);
+
+-- 급여가 2200, 3200, 5000, 6800인 사원들의 정보를 사번, 이름, 직종, 급여 순으로 출력
+SELECT employee_id, first_name, job_id, salary
+FROM EMPLOYEES
+WHERE salary IN(2200, 3200, 5000, 6800);
+
+-- 05년도에 입사한 사원들의 사번, 이름, 직종, 입사일을 출력
+SELECT employee_id, first_name, job_id, hire_date
+FROM EMPLOYEES
+WHERE hire_date >= '01/01/2005' AND hire_date <= '12/31/2005';
+
+-- BETWEEN: a와 b사이의 값을 검색할 때 사용
+SELECT employee_id, first_name, job_id, hire_date
+FROM EMPLOYEES
+WHERE hire_date BETWEEN '01/01/2005' AND '12/31/2005';
+
+-- 급여가 5000이상이고 6000이하인 모든 사원들의 정보
+SELECT * FROM EMPLOYEES
+WHERE salary BETWEEN 5000 AND 6000;
+
+-- LIKE(유사검색): 지정한 문자형태와 같은, 또는 포함하고 있는 자원을 검색
+1) %: 모든 값
+2) _ : 하나의 값
+예) M%: M으로 시작하는 모든 값(Memo, Mail ...)
+예) %A%: 어디든 A가 들어가는 모든 값(polland, apple...)
+예) %e: e로 끝나는 모든 값(file, apple...)
+예) M_____ : M으로 시작하는 전체 길이 6자의 값(Mobile....)
+
+-- 이름이 D로 시작하는 사원들의 이름, 성을 출력
+SELECT first_name, last_name FROM EMPLOYEES
+WHERE first_name LIKE 'D%';
+
+-- 이름이 d로 끝나는 모든 사원들의 사번, 이름, 급여를 출력
+SELECT first_name, last_name, salary
+FROM EMPLOYEES
+WHERE first_name LIKE '%d';
+
+-- 이름의 세번째 글자가 a인 사람들의 사번, 이름을 출력
+SELECT employee_id, first_name
+FROM EMPLOYEES
+WHERE first_name LIKE '__a%';
+
+-- 이름의 두번째 글자가 i, 네번째 글자가 h인 사원들의 사번, 이름을 출력
+SELECT employee_id, first_name
+FROM EMPLOYEES
+WHERE first_name LIKE '_i_h%';
+
+-- 이름이 6글자인 사원들 중에 네번째가 a인 사원들의 사번, 이름을 출력
+SELECT employee_id, first_name
+FROM EMPLOYEES
+WHERE first_name LIKE '___a__';
+
+-- 이름이 s로 시작하고 n으로 끝나는 모든 사원들의 이름을 출력
+SELECT first_name
+FROM EMPLOYEES
+WHERE first_name LIKE 'S%n';
+
+-- 전화번호 중에 44가 포함되어 있지 않은 사원들의 사번, 이름, 전화번호를 출력
+SELECT employee_id, first_name, phone_number
+FROM EMPLOYEES
+WHERE phone_number NOT LIKE '%44%';
+
+-- 전화번호에 44가 중간에만 들어있는 사원들의 사번, 이름, 전화번호를 출력
+SELECT employee_id, first_name, phone_number
+FRM EMPLOYEES
+WHERE phone_number LIKE '%44%'
+AND phone_number NOT LIKE '44%'
+AND phone_number NOT LIKE '%44';
+
+-- 이름에 o가 포함되어 있으면서 a로 끝나는 모든 사원들의 사번, 이름을 출력
+SELECT employee_id, first_name
+FROM EMPLOYEES
+WHERE first_name LIKE '%o%a';
+
+-- 전화번호가 6으로 시작하고 중간에 2가 포함되어있고 9로 끝나는 사원들의 사번, 이름, 전화번호 조회
+SELECT employee_id, first_name, phone_number
+FROM EMPLOYEES
+WHERE phone_number LIKE '6%2%9';
+
+-- 직종이 SA_MAN, IT_PROG, HR_REP이 아닌 모든 사원들의 이름, 직종을 출력
+SELECT first_name, job_id
+FROM EMPLOYEES
+WHERE job_id NOT IN ('SA_MAN', 'IT_PROG', 'HR_REP');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
