@@ -1,0 +1,248 @@
+-- 그룹함수: 여러 행 또는 테이블 전체에 대하여 하나의 결과를 가져오는 함수
+1) AVG(): 평균값
+2) COUNT(): 조회된 행(row)의 갯수를 반환
+3) MAX(): 최댓값
+4) MIN(): 최솟값
+5) SUM(): 총 합을 구하는 함수
+
+SELECT COUNT(*) count FROM EMPLOYEES
+
+** 그룹화가 되어있지 않다면
+그룹함수와 일반 컬럼을 함께 사용할 수 없다
+
+SELECT count(*) FROM EMPLOYEES
+SELECT count(employee_id) FROM EMPLOYEES
+SELECT count(commission_pct) FROM EMPLOYEES
+
+-- 사원테이블에서 관리자로 일하고 있는 사원 수를 출력(AC_MGR)
+SELECT COUNT(DISTINCT manager_id) FROM EMPLOYEES
+
+-- 직종이 SA_REP인 사람들의 급여의 평균, 최고 급여, 최저 급여, 급여의 총 합을 출력
+SELECT AVG(salary) avg, max(salary) max, min(salary) min , sum(salary) sum
+FROM EMPLOYEES
+WHERE job_id = 'SA_REP'
+
+-- 80번 부서에 속하는 사람들의 급여의 평균
+SELECT AVG(salary) avg FROM EMPLOYEES
+WHERE department_id = 80;
+
+-- 보너스를 받지 않는 사원수
+SELECT COUNT(*) count FROM EMPLOYEES
+WHERE commission_pct IS NULL;
+
+-- 부서번호가 50번인 사원들의 급여의 합
+SELECT SUM(salary) FROM EMPLOYEES
+WHERE department_id = 50;
+
+-- 직종이 IT_PORG인 사원수를 출력
+SELECT COUNT(*) FROM EMPLOYEES
+WHERE job_id = 'IT_PROG';
+
+-- 급여가 5000이하인 사원들의 평균 급여를 츌력
+SELECT AVG(salary) FROM EMPLOYEES
+WHERE salary <= 5000;
+
+-- 이 회사의 부서의 갯수 
+SELECT COUNT(distinct department_id) FROM EMPLOYEES
+
+-- 입사일이 2005년 이후인 사원들의 수
+SELECT COUNT(*) FROM EMPLOYEES
+WHERE hire_date >= '01/01/2005';
+
+-- 숫자와 관련된 함수들
+-- round(): 반올림
+-- trunc(): 버림
+-- mod(): 나머지값
+-- power(): 제곱
+-- ceiling(): 올림
+-- floor(): 버림
+
+SELECT ROUND(3.14) a1, ROUND(3.5) a2
+FROM DUAL;
+
+-- DUAL: 기능적인걸 확인하기 위해 사용하는 가상의 테이블
+
+SELECT TRUNC(3.1415926535, 2) pi FROM DUAL
+인자로 숫자, 숫자를주면 뒤에 몇자리까지 표기할지 설정가능
+
+SELECT POWER(4, 2) FROM DUAL
+
+SELECT MOD(7, 4) FROM DUAL
+
+-- 문자 관련 함수(그룹함수는 아님)  -- 
+1) initcap(): 첫 글자를 대문자로 변환
+2) lower(): 대문자를 소문자로 변환
+3) upper(): 소문자를 대문자로 변환
+4) lpad(), rpad(): 왼쪽 또는 오른쪽으로 원하는 byte만큼 자리를 확보
+5) substr(): 특정 문장을 잘라내는 함수
+6) replace(): 원하는 문자를 교체하는 함수
+7) length(): 문자열의 길이를 가져옴
+8) instr(): 특정 문자열의 위치를 찾아 반환하는 함수
+9) ltrim(), rtrim(): 왼쪽 또는 오른쪽의 문자를 지우는 함수
+
+SELECT initcap('good morning') FROM DUAL
+SELECT INITCAP('good/morning') FROM DUAL 
+SELECT LOWER('HOME COMMING') FROM DUAL
+SELECT UPPER('hello world') FROM DUAL
+
+-- miclael로 조회했을때 Micheal의 사번과 이름을 출력
+SELECT employee_id, first_name FROM EMPLOYEES
+WHERE first_name = INITCAP('michael');
+
+SELECT employee_id, first_name FROM EMPLOYEES
+WHERE lower(first_name) = 'michael'
+
+-- 이름에 m이 포함되어 있는 사람의 사번, 이름을 조회
+SELECT employee_id, first_name FROM EMPLOYEES
+WHERE lower(first_name) LIKE '%m%'
+
+SELECT lpad( 'good', 6, '#' ) FROM DUAL
+SELECT RPAD( 'good', 6, 'ㄱ' ) FROM DUAL
+-- 한글은 2바이트 이므로 good 4바이트 + ㄱ으로 6바이트 채워짐
+SELECT RPAD('good', 10, '@') FROM DUAL
+
+SELECT LTRIM( 'good', 'g') FROM DUAL
+-- 공백을 지우는데 주로 사용
+SELECT LENGTH(RTRIM('good   ', '   ')) FROM DUAL
+
+SELECT SUBSTR('good morning every one', 1, 4) FROM DUAL
+-- 시작 지점, 몇개를 자를지 입력받음
+SELECT SUBSTR('good morning every one', -3, 3) FROM DUAL
+-- 파이썬 마냥 인덱스에 -값을 줘서 뒤에서부터 읽어 올 수 있다.
+
+--사번, 이름, 입사한 월을 조회
+SELECT employee_id, first_name, SUBSTR(hire_date, 1, 2) date 
+FROM EMPLOYEES
+
+-- 사번, 이름, 전화번호, 전화번호 뒤 네자리를 조회
+SELECT employee_id, phone_number, SUBSTR(phone_number, -4, 4)
+FROM EMPLOYEES
+
+-- 사번, 이름, 가공된 이름
+1) 이름의 앞에서부터 3글자만 추출
+2) 추출한 문자열의 전체 길이를 5로 맞추고 부족한 부분을 * 문자로 채운다
+SELECT employeeid, first_name, RPAD(SUBSTR(first_name, 1, 3), 5, '*')
+FROM EMPLOYEES
+
+SELECT REPLACE( 'good morning', 'good', 'bad' ) FROM DUAL
+
+SELECT first_name, INSTR(first_name, 'ar') FROM EMPLOYEES
+찾는 값이 포함되어있으면 어느 위치에 있는지 반환
+
+-- 이름, 마지막 두 글자를 * 로 대체한 이름을 조회
+SELECT first_name, RPAD(SUBSTR(first_name, -2, 2), length(first_name), '*')
+FROM EMPLOYEES
+
+SELECT first_name, RPAD( SUBSTR(first_name, 1, length(first_name)-2, 2, 
+		length(first_name), '*') FROM EMPLOYEES
+
+SELECT first_name, 
+SUBSTR( first_name, 1, length(first_name)-2 ) || '**' ||
+EMPLOYEES
+
+-- 이름, 이름의 앞 두글자를 제외한 나머지를 *로 대체한 이름
+SELECT first_name, RPAD( SUBSTR(first_name, 1, 2)   length(first_name), '*' ) result
+FROM EMPLOYEES
+
+-- 날짜함수
+ - 현재 날짜를 가져오는 자료형: sysdate
+SELECT sysdate FROM DUAL
+
+1) months_between: a 와 b 사이에 개월 수
+-- 입사일로부터 오늘까지 경과한 개월수
+SELECT sysdate, hire_date, month_between(sysdate, hire_date) 
+FROM EMPLOYEES;
+
+2) add_months: 특정 날짜로부터 경과한 개월수에 따른 날짜
+SELECT add_months(sysdate, 6) FROM DUAL
+
+-- 입사 기간이 220개월 이상인 사원들의 이름, 입사일, 입사 후 현재까지 개월수를 입사 기간이 긴 사람 순으로 조회
+(단, 입사 개월수는 소수점 이하로 절삭)
+SELECT first_name, hire_date, trunc(months_between(sysdate, hire_date)) month
+FROM EMPLOYEES
+WHERE months_between(sysdate, hire_date) >= 220 
+ORDER BY hire_date;
+
+-- 120번 사원이 입사후 3년 6개월 만에 퇴사했다
+사원의 사번, 이름, 입사일, 퇴사일을 출력
+SELECT employee_id, first_name, hire_date, add_months(hire_date, 42)
+FROM EMPLOYEES
+WHERE employee_id = 120
+
+-- 직종이 SA_REP인 사원들의 입사일로 부터 2년뒤 날짜를 사번, 이름, 입사일, 2년후 날짜 순으로 출력
+SELECT employee_id, first_name, hire_date, add_months(hire_date, 24) after2
+FROM EMPLOYEES
+WHERE job_id = 'SA_REP'
+
+-- to_char() --
+날짜나 시간등의 특정 포맷을 지정할 수 있도록 하는 함수
+1) YYYY 또는 YY : 년도
+2) MM: 월
+3) DD : 일
+4) hh: 시
+	4-1) hh24 : 24시간으로 표기
+	4-2) hh12 : 12시간으로 표기(기본)
+5) ss: 초
+6) day: 요일
+7) scc : 몇세기인지 나타냄
+8) mi: 분
+9) month : 월
+	9-1) mon : 월을 3자리로 표기해줌
+
+
+SELECT to_char(sysdate, 'yyyy-mm-dd day hh24:ss') day FROM DUAL
+
+-- 모든 사원들의 이름과 입사년도를 '년-월-일 요일' 형태로 출력
+SELECT first_name, to_char(hire_date, 'yyyy-mm-dd day') hire_date
+FROM EMPLOYEES
+
+-- 기타 함수 -- 
+NVL() : NULL 값을 다른 데이터로 변경하는 함수
+
+--보너스를 받지 않는 사원들의 commission을 0으로 수정
+SELECT employee_id, commission_pct, nvl(commission_pct, 0)
+FROM EMPLOYEES
+WHERE commission_pct IS NULL;
+
+--- RANK() OVER(): 순위를 매기는 함수
+-- 부서번호,  사번, 이름, 월급을 월급을 많이 받는사람 순으로 순위를 매겨서 조회
+SELECT department_id, employee_id, first_name, salary,
+RANK() OVER(ORDER BY salary DESC)
+FROM EMPLOYEES;
+
+-- 입사일이 빠른 사람부터 순위를 매겨서 사번, 이름, 입사일, 순위 순으로 출력
+SELECT employee_id, first_name, hire_date,
+RANK() OVER(ORDER BY hire_date DESC) rank
+FROM EMPLOYEES;
+
+-- 사번, 이름, 월급을 조회, 월급이 낮은 순으로 순위를 매겨 출력
+단 월급이 5000이상인 사원만 조회
+SELECT employee_id, first_name, salary,
+RANK() OVER(ORDER BY salary)
+FROM EMPLOYEES
+WHERE salary >= 5000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

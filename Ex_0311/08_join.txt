@@ -1,0 +1,109 @@
+-- join : 테이블과 테이블을 연결하여 특정한 데이터를 얻고자 할 때 사용
+
+-- 이름, 성, 부서 번호, 부서 이름을 출력
+SELECT e.first_name, e.last_name, e.department_Id, d.department_name
+FROM EMPLOYEES e, DEPARTMENTS d
+WHERE e.department_id = d.department_id
+
+또는 
+SELECT e.first_name, e.lastName, e.department_id, d.department_name
+FROM EMPLOYEES e
+JOIN DEPARTMENTS d ON e.department_id = d.department_id
+
+-- 사원, 부서 테이블로부터
+이름, 부서번호, 부서이름을 출력
+SELECT e.first_name, e.department_id, d.department_name
+FROM EMPLOYEES e, DEPARTMENTS d
+WHERE e.department_id = d.department_id
+
+SELECT e.first_name, e.lastName, d.department_name
+FROM EMPLOYEES e
+JOIN DEPARTMENTS d ON e.department_id = d.department_id
+
+-- 부서(DEPARTMENTS), 지역(LOCATIONS) 테이블로부터 부서이름, 도시를 출력
+SELECT d.department_name, l.city
+FROM DEPARTMENTS d, LOCATIONS l
+WHERE d.location_id = l.location_id;
+
+SELECT d.department_name, l.city
+FROM DEPARTMENTS d
+JOIN LOCATIONS l ON d.location_id = l.location_id;
+
+-- 지역, 국가(COUNTRIES)를 조회하여 도시, 도시가 있는 국가의 이름
+SELECT l.city, c.country_name
+FROM LOCATIONS l, COUNTRIES c
+WHERE l.country_id = c.country_id
+
+SELECT l.city, c.country_name
+FROM LOCATIONS l
+JOIN COUNTRIES c ON l.country_id = c.country_id
+
+-- 사원테이블, jobs테이블을 조회 이름, 이메일, 직종, 직종풀네임으로 조회
+SELECT e.first_name, e.email, e.job_id, j.job_title
+FROM EMPLOYEES e, JOBS j
+WHERE e.job_id = j.job_id
+
+SELECT e.first_name, e.email, e.job_id, j.job_title
+FROM EMPLOYEES e
+JOIN JOBS j ON e.job_id = j.job_id;
+
+-- 사원명, 부서명, 부서가 속한 도시명
+SELECT e.first_name, d.department_name , l.city
+FROM EMPLOYEES e, DEPARTMENTS d, LOCATIONS l
+WHERE e.department_id = d.department_id AND d.location_id = l.location_id;
+
+SELECT e.first_name, d.department_name , l.city
+FROM EMPLOYEES e
+JOIN DEPARTMENTS d ON e.department_id = d.department_id
+JOIN LOCATIONS l ON d.location_id = l.location_id
+
+-- 사원 이름, 성, 이메일, 부서번호, 부서이름, 지역 번호, 도시
+도시가 seatle인 경우만 조회
+SELECT e.first_name, e.last_name, e.email, d.department_id, l.location_id, l.city
+FROM EMPLOYEES e, DEPARTMENTS d, LOCATIONS l
+WHERE e.department_id = d.department_id AND d.location_id = l.location_id AND l.city = 'Seattle'
+
+SELECT e.first_name, e.last_name, e.email, d.department_id, l.location_id, l.city
+FROM EMPLOYEES e
+JOIN DEPARTMENTS d ON e.department_id = d.department_id 
+JOIN LOCATIONS l ON d.location_id = l.location_id
+WHERE l.city = 'Seattle'
+
+-- countries, region 테이블로부터 나라이름, 대륙을 출력
+SELECT c.country_name, r.region_name
+FROM COUNTRIES c, REGIONS r
+WHERE c.region_id = r.region_id
+
+SELECT c.country_name, r.region_name
+FROM COUNTRIES c
+JOIN REGIONS r ON c.region_id = r.region_id
+
+-- 사원의 이름+성, 부서명, 근무중인 도시를 출력
+SELECT RPAD(e.first_name, length(e.last_name) + length(e.first_name) + 1, '  '||e.last_name) name, d.department_name, l.city
+FROM EMPLOYEES e, DEPARTMENTS d, LOCATIONS l
+WHERE e.department_id = d.department_id AND d.location_id = l.location_id
+ORDER BY e.first_name
+
+-- 부서이름, 도시, 나라명, 대륙, 근무자수 근무 인원이 20명 이상인곳만
+SELECT d.department_name, l.city, c.country_name, r.region_name, count(e.salary) cnt
+FROM EMPLOYEES e, DEPARTMENTS d, LOCATIONS l, COUNTRIES c, REGIONS r
+WHERE e.department_id = d.department_id
+AND d.location_id = l.location_id 
+AND l.country_id = c.country_id
+AND c.region_id = r.region_id
+GROUP BY d.department_name, l.city, c.country_name, r.region_name
+HAVING COUNT(e.salary) >= 20
+
+
+
+
+
+
+
+
+
+
+
+
+
+

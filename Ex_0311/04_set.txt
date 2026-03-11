@@ -1,0 +1,56 @@
+-- distinct: 중복을 제거하는 명령어
+SELECT distinct department_id, salary
+FROM employees
+WHERE department_id = 90 OR department_id = 80
+ORDER BY department_id, salary;
+
+-- UNION(중복제거 및 정렬)
+SELECT department_id, salary
+FROM employees
+WHERE department_id = 90
+UNION DESC
+SELECT department_id, salary 
+FROM employees
+WHERE department_d = 80; 
+
+-- 부서번호가 100번이 아닌 사원들의 급여, 부서번호를 급여가 낮은 순으로 조회
+SELECT salary, department_id
+FROM EMPLOYEES
+WHERE department_id < 100
+UNION
+SELECT salary, department_id
+FROM EMPLOYEES
+WHERE department_id > 100
+
+-- 위의 union을 사용한 쿼리를 distinct를 사용한 일반 쿼리문으로 변경
+SELECT DISTINCT salary, department_id
+FROM EMPLOYEES
+WHERE department_id != 100
+ORDER BY salary;
+
+-- minus: 첫번째 SELECT 문에 반환되는 행에서 두번째 SELECT문에 의해 반환되는 결과를 뺀다.
+SELECT salary, department_id
+FROM EMPLOYEES
+MINUS
+SELECT salary, department_id 
+FROM EMPLOYEES
+WHERE department_id = 100
+
+-- INTERSECT: 두 행의 교집합을 조회
+SELECT salary FROM EMPLOYEES
+WHERE department_id > 90
+INTERSECT
+SELECT salary FROM EMPLOYEES
+WHERE department_id <= 80
+
+
+
+
+
+
+
+
+
+
+
+

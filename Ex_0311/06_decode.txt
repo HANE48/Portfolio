@@ -1,0 +1,81 @@
+-- decode(): switch문의 역할을 하는 함수
+SELECT employee_id,
+DECODE(employee_id, 100, 'ceo', 101, 'cto', 102, 'cco', 'employee') result
+FROM EMPLOYEES
+
+-- 부서번호가 20번이면 marketing, 60번이면 computer. 90번이면 managent 나머지 부서들은 etc라는 결과 출력
+사번, 이름, 부서번호, 부서별 이름
+SELECT employee_id, first_name, department_id, 
+DECODE(department_id, 20 , 'marketing', 60, 'computer', 90, 'management', 'etc') depart_name
+FROM EMPLOYEES
+ORDER BY department_id ;
+
+-- 이름, 직종을 출력
+직종이 IT_PROG이면 PROGRAMMER, 그렇지 않으면 non_prog
+SELECT frist_name, job_id,
+DECODE(job_id, 'IT_PROG', 'programmer', 'nonprogrammer') job
+FROM EMPLOYEES;
+
+-- 이름과 직종을 출력
+직종이 IT_PROG인 사원은 programmer, SA_MAN 인사원은 business
+SELECT first_name, job_id, 
+DECODE(job_id, 'IT_PROG', 'programmer', 'SA_MAN', 'business','etc')
+FROM EMPLOYEES
+
+
+-- 2002년 부터 2006년까지 입사자의 수를 연도별로 출력
+SELECT
+	COUNT(DECODE(to_char(hire_date, 'yy'), '02', 1)) y2002, 
+	COUNT(DECODE(to_char(hire_date, 'yy'), '03', 1)) y2003, 
+	COUNT(DECODE(to_char(hire_date, 'yy'), '04', 1)) y2004, 
+	COUNT(DECODE(to_char(hire_date, 'yy'), '05', 1)) y2005, 
+	COUNT(DECODE(to_char(hire_date, 'yy'), '06', 1)) y2006 
+FROM EMPLOYEES
+
+case : else if문과 같은 역할을 하는 함수
+SELECT first_name, department_id,
+	CASE WHEN department_id = 20 THEN 'Marketing'
+		WHEN department_id = 60 THEN 'Computer'
+		WHEN department_id = 90 THEN 'Management'
+	else 'ETC'
+	end Dept
+FROM EMPLOYEES
+
+-- 이름, 부서를 출력 직종이 IT_PROG라면 'programmer' 직종이 SA_MAN 이면 'business'
+나머지는 ETC
+SELECT first_name, job_id,
+	CASE WHEN job_id = 'IT_PROG' THEN 'programmer'
+		WHEN job_id = 'SA_MAN' THEN 'business'
+		end 'ETC'
+FROM EMPLOYEES
+
+-- 입사일에 따라서 퇴직금을 책정
+이름, 입사일, 월급, 퇴직금 순으로 출력
+1) 04년 이전 입사: salaary * 100
+2) 04 ~ 06 : salary * 50
+3) 07 ~ : salary * 20
+
+SELECT first_name, hire_date, salary, 
+	CASE WHEN to_char(hire_date, 'yy') < 04 THEN salary * 100
+		WHEN (to_char(hire_date, 'yy') >= 04 AND to_char(hire_date, 'yy') <=06) 			THEN salary * 50
+		WHEN to_char(hire_date, 'yy') >= 07 THEN salary * 20
+		end "퇴직금"
+FROM EMPLOYEES
+ORDER BY hire_date
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
