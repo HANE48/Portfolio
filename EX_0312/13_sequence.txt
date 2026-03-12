@@ -1,0 +1,69 @@
+-- 시퀀스: 연속적인 번호를 생성해주는 기능
+create sequence serial_seq
+start with 1 -- 시작 값
+increment by 1 -- 증가 값
+maxvalue 5 -- 시퀀스의 최댓값
+minvalue 1 -- 시퀀스의 최솟값
+nocache;
+
+-- teacher 테이블의 내용을 삭제
+delete from teacher;
+commit;
+
+-- 시퀀스를 사용하여 teacher테이블에 값을 추가
+INSERT INTO TEACHER
+values( serial_seq.nextval, 'hong', '홍', 'man' );
+INSERT INTO TEACHER
+values( serial_seq.nextval, 'hong1', '김', 'man' );
+INSERT INTO TEACHER
+values( serial_seq.nextval, 'hong2', '이', 'man' );
+INSERT INTO TEACHER
+values( serial_seq.nextval, 'hong3', '박', 'man' );
+INSERT INTO TEACHER
+values( serial_seq.nextval, 'hong4', '최', 'man' );
+
+-- 시퀀스 삭제
+drop sequence serial_seq;
+
+-- 새로운 시퀀스를 생성
+create sequence number_seq;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,214 @@
+-- subquery
+특정 sql문장 안에 또 다른 sql문장이 포함되어 있는 것
+서브쿼리를 통해 여러번의 쿼리를 수행해야하는 상황에서 DB접근 횟수를 줄일 수 있다.
+
+-- 서브쿼리를 사용할 수 있는 곳
+1) where, having
+2) select, delete 문의 from
+3) update 문의 set
+4) insert 문의 into
+
+-- 이름이 Michael 이고 직종이 MK_MAN인 사원의 급여를 초과하는 사원들의 정보를 사번, 이름, 직종, 급여 순으로 출력
+
+SELECT employee_id, first_name, job_id, salary
+FROM EMPLOYEES
+WHERE salary > ( 
+  SELECT salary
+  FROM EMPLOYEES
+  WHERE first_name = 'Michael' AND job_id = 'MK_MAN' 
+);
+
+-- 사번이 111번인 사원의 직종과 같고, 159번 사원의 급여를 초과하는 사원들의 정보를 
+사번, 이름, 직종, 입사일, 급여, 순으로 출력
+SELECT employee_id, first_name, job_id, hire_date, salary
+FROM EMPLOYEES
+WHERE job_id = (
+  SELECT job_id
+  FROM EMPLOYEES
+  WHERE employee_id = 111
+) AND salary > (
+  SELECT salary
+  FROM EMPLOYEES
+  WHERE employee_id = 159
+);
+
+-- 회사에서 가장 월급을 많이 받는 사원의 사번, 이름, 월급을 출력
+SELECT employee_id, first_name, salary
+FROM EMPLOYEES
+WHERE salary = (
+  SELECT MAX(salary)
+  FROM EMPLOYEES
+);
+
+-- 월급의 평균이 5000이상인 부서들을 찾고, 해당 부서의 인원수를 출력하되, 많은 순으로 정렬해서 부서번호, 인원수를 보여주기
+SELECT department_id, count(*) cnt
+FROM EMPLOYEES
+WHERE department_id IS NOT NULL
+GROUP BY department_id
+HAVING AVG(salary) >= 5000
+ORDER BY cnt DESC;
+
+SELECT department_id, COUNT(*)
+FROM EMPLOYEES
+WHERE department_id
+IN ( 
+  SELECT deaprtment_id
+  FROM EMPLOYEES
+  GROUP BY department_id
+  HAVING AVG(salary) >= 5000 
+) 
+GROUP BY department_id
+ORDER BY COUNT(*) DESC;
+
+-- 사번이 150번인 사원과 급여가 같은 사원들을 모두 출력
+SELECT *
+FROM EMPLOYEES
+WHERE salary = (
+  SELECT salary
+  FROM EMPLOYEES
+  WHERE employee_id = 150
+)
+
+-- 평균 이상인 사원들의 이름, 월급 조회
+SELECT first_name, salary
+FROM EMPLOYEES
+WHERE salary >= (
+  SELECT AVG(salary)
+  FROM EMPLOYEES
+)
+
+-- bruce와 같은 부서 사람들의 이름을 출력
+SELECT first_name
+FROM EMPLOYEES
+WHERE department_id = (
+  SELECT department_id
+  FROM EMPLOYEES
+  WHERE frist_name = 'Bruce'
+);
+
+-- 월급이 137번 이상이면서 149번 이하의 이름과 급여를 출력
+SELECT first_name, salary
+FROM EMPLOYEES
+WHERE salary 
+BETWEEN (
+  SELECT salary FROM EMPLOYEES
+  WHERE employee_id = 137 
+) AND (
+  SELECT salary FROM EMPLOYEES
+  WHERE employee_id = 149
+);
+
+-- 직종과 직종별 급여의 평균을 조회
+평균 월급이 bruce의 월급을 초과하는 경우
+SELECT job_id, AVG(salary)
+FROM EMPLOYEES
+GROUP BY job_id 
+HAVING AVG(salary) > (
+  SELECT salary
+  FROM EMPLOYEES
+  WHERE first_name = 'Bruce'
+);
+
+-- 성이 Kochhar 인 사원의 월급보다 많은 사원들의 사번, 성, 직종, 급여를 출력
+SELECT employee_id, last_name, job_id, salary
+FROM EMPLOYEES
+WHERE salary > (
+  SELECT salary
+  FROM EMPLOYEES
+  WHERE last_name = 'Kochhar'
+);
+
+-- 유럽지역 사원들의 평균 급여보다 많이 받는 사원들의 이름, 급여, 지역을 출력
+SELECT e.first_name, e.salary, r.region_name
+FROM EMPLOYEES e, LOCATIONS l, DEPARTMENTS d, REGIONS r, COUNTRIES c
+WHERE e.department_id = d.department_id
+AND d.location_id = l.location_id
+AND l.country_id = c.country_id
+AND c.region_id = r.region_id
+AND salary > (
+  SELECT AVG(salary)
+  FROM EMPLOYEES e, LOCATIONS l, DEPARTMENTS d, REGIONS r, COUNTRIES c
+  WHERE e.department_id = d.department_id
+  AND d.location_id = l.location_id
+  AND l.country_id = c.country_id
+  AND c.region_id = r.region_id
+  AND r.region_name = 'Europe'
+)
+
+SELECT e.first_name, e.salary, r.region_name
+FROM EMPLOYEES e
+JOIN DEPARTMENTS d ON e.department_id = d.department_id
+JOIN LOCATIONS l ON  d.location_id = l.location_id
+JOIN COUNTRIES c ON l.country_id = c.country_id
+JOIN REGIONS r ON c.region_id = r.region_id
+WHERE e.salary > (
+  SELECT AVG(salary)
+  FROM EMPLOYEES e
+  JOIN DEPARTMENTS d ON e.department_id = d.department_id
+  JOIN LOCATIONS l ON  d.location_id = l.location_id
+  JOIN COUNTRIES c ON l.country_id = c.country_id
+  JOIN REGIONS r ON c.region_id = r.region_id 
+  WHERE r.region_name = 'Europe'
+)
+
+-- Matthew를 상사로 두고 있으면서 직종이 ST_CLERK인 사원들의 사번, 이름, 직종, 상사번호
+SELECT employee_id, first_name, job_id, manager_id
+FROM EMPLOYEES
+WHERE manager_id = (
+  SELECT employee_id
+  FROM EMPLOYEES
+  WHERE first_name = 'Matthew'
+) AND job_id = 'ST_CLERK'
+
+-- 경력이 가장 오래된 사원의 사번, 이름, 급여, 입사일, 부서이름을 출력
+SELECT e.employee_id, e.first_name, e.salary, e.hire_date, d.department_name
+FROM EMPLOYEES e
+JOIN DEPARTMENTS d ON e.department_id = d.department_id
+WHERE hire_date = (
+  SELECT MIN(hire_date)
+  FROM EMPLOYEES
+)
+
+-- 근무지가 시애틀인 사람들의 평균 급여보다 많이 받는 사원들의 사번, 이름, 급여를 조회
+SELECT e.employee_id, e.first_name, e.salary
+FROM EMPLOYEES 
+WHERE salary > (
+  SELECT AVG(salary)
+  FROM EMPLOYEES e
+  JOIN DEPARTMENTS D ON e.department_id = d.department_id
+  JOIN LOCATIONS L ON d.location_id = l.location_id
+  WHERE l.city = 'Seattle'
+)
+
+-- 시애틀근무자들 중에서 시애틀 평균 월급보다 많이 받는 사원들을 추려서 이름, 급여, 도시 순으로 출력
+SELECT first_name, salary, l.city
+FROM EMPLOYEES e
+JOIN DEPARTMENTS d ON e.department_id = d.department_id
+JOIN LOCATIONS l ON d.location_id = l.location_id
+WHERE city = 'Seattle' AND salary > (
+  SELECT AVG(salary)
+  FROM EMPLOYEES e
+  JOIN DEPARTMENTS d ON e.department_id = d.department_id
+  JOIN LOCATIONS l ON d.location_id = l.location_id
+  WHERE city = 'Seattle'
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

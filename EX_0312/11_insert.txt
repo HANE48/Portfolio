@@ -1,0 +1,29 @@
+-- 자원 추가(insert)
+create table TEACHER(
+  id NUMBER(3) primary key,
+  nickname VARCHAR2(20),
+  name VARCHAR2(20) NOT NULL,
+  gender VARCHAR2(10) NOT NULL
+);
+
+- 자원 추가
+INSERT INTO TEACHER( id, nickname, name, gender )
+values( 1, 'hong', '홍길동', '남자' );
+
+commit; -- 변경사항을 물리적으로 저장
+
+INSERT INTO TEACHER( nickname, id, name, gender )
+values('park', 2, '박길순', '여자');
+commit;
+
+INSERT INTO TEACHER(id, name, gender)
+values(3, '김말동', '남자');
+commit;
+
+insert into TEACHER( id, nickname, name )
+values(4, 'oh', '오말자');	-- gender속성은 null이면 안되서 에러남
+
+INSERT INTO TEACHER values( 
+4, 'lim', '임꺽정', '여자' );
+
+

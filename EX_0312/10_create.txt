@@ -1,0 +1,88 @@
+-- SQL 자료형
+1) NUMBER 
+	- 숫자 데이터(정수, 실수)를 저장하기 위한 자료형
+	 NUMBER(3) --> 3자리의 숫자를 입력받을 수 있음
+
+2) DATE
+	- 날짜와 시간데이터를 저장하기 위한 자료형
+
+3) VARCHAR
+	- 문자데이터를 저장하기 위한 자료형
+
+4) VARCHAR2
+	- 문자데이터를 저장하기 위한 자료형
+
+
+-- 테이블 생성
+-- 후보키(candidate key): 기본키가 될자격이 있는 모든 컬럼
+ -- 기본 키(primary key): 고유한 식별자로써 컬럼의 값에대한 중복을 방지하는 설정
+CREATE TABLE PERSON(
+  id NUMBER(2) PRIMARY KEY,
+  name VARCHAR(20) NOT  NULL
+)
+
+-- hr 계정에 권한주기
+GRANT connect, rsource, dba to HR
+
+--hr 계정 잠금해재
+alter user HR identified by 1111 account unlock;
+
+-- 테이블에 컬럼 추가
+ALTER TABLE PERSON
+ADD birth DATE NOT NULL
+
+-- 컬럼명 수정
+ALTER table PERSON rename column birth to birthday;
+
+-- 컬럼 속성 수정
+alter table PERSON modify name VARCHAR2(30);
+
+-- 컬럼 삭제
+alter table PERSON drop column birthday;
+
+-- 테이블 삭제
+drop table PERSON;
+
+-- 연습용 테이블
+-- unique 중복을 막음
+create table MEMBER(
+  idx NUMBER(2) primary key, 
+  id VARCHAR2(20) NOT NULL unique,
+  pwd VARCHAR2(20) NOT NULL,
+  email VARCHAR2(50) unique
+);
+
+-- 회원가입 날짜를 의미하는 reg_date컬럼을 추가
+alter table MEMBER add reg_date DATE;
+
+-- 테이블 삭제
+drop table member;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

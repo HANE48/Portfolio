@@ -1,0 +1,53 @@
+-- update
+update TEACHER set gender='여자';
+commit;
+
+--1번 유저의 성별을 변경
+update TEACHER set gender = '남자'
+WHERE id = 1;
+commit;
+
+update TEACHER set nickname = 'kim'
+WHERE id = 3;
+commit;
+
+--delete 
+delete FROM TEACHER
+WHERE id=4;
+
+-------------------------------------------------
+departments 테이블을 복사
+create table dept
+as select * FROM DEPARTMENTS;
+
+SELECT * FROM DEPT;
+
+--부서명이 s로 시작하는 부서를 삭제
+Delete FROM dept
+WHERE department_name LIKE 'S%';
+
+--부서명이 15글자 이하인 부서를 삭제
+DELETE FROM dept
+WHERE length(department_name) <= 15;
+
+-- employees 테이블을 복사
+create table empl
+as SELECT * FROM EMPLOYEES;
+
+-- 복사된 empl테이블을 조회
+SELECT * FROM EMPL;
+
+-- 모든 사원의 월급을 10000달러로 수정
+update EMPL set salary = 10000;
+
+-- 근속연수가 20년 이상인 사원들의 월급을 10000달러 인산
+update EMPL set salary = 20000
+WHERE months_between(hire_date, 240);
+
+
+
+
+
+
+
+
