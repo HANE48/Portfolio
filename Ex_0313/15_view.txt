@@ -1,0 +1,97 @@
+VIEW 
+- 원하는 데이터만들 가공하기 위해 만드는 가상의 테이블
+
+-- employees 테이블에서 원하는 정보만을 조회하는 view를 생성
+create or replace view 
+emp_view( empno, hire, job, mgr, depno ) AS 
+select employee_id, hire_date, job_id, manager_id, department_id
+FROM employees
+
+SELECT * FROM emp_view
+
+-- view를 연습할 테이블 생성
+create table score(
+  id number(3) primary key,
+  name varchar2(30) not null,
+  kor number(3) check(kor <= 100),
+  eng number(3) check(eng <= 100),
+  math number(3) check(math <= 100)
+);
+
+create sequence score_seq;
+
+insert into score
+values(score_seq.nextval, '홍길동', 100, 70, 100);
+
+insert into score
+values(score_seq.nextval, '김길동', 10, 7, 10);
+
+insert into score
+values(score_seq.nextval, '박박박', 50, 65, 60);
+
+-- 스코어 테이블에서 총점과 평균을 출력하는 view를 생성
+create or replace view
+score_view AS 
+SELECT id, name, kor, eng, math, 
+  kor+eng+math total, TRUNC((kor+eng+math)/3, 1) avg
+FROM SCORE
+
+-- 사원테이블, jobs테이블, departments을 조회하여 사번, 풀네임, 직종, 직종풀네임(job_title), 급여, 부서이름을 조회하는 employeeDetails라는 이름의 view를 만들고 해당 view의 내용을 모두 조회하시오
+create or replace view employeeDetails AS
+SELECT employee_id, first_name || ' ' || last_name full_name, e.job_id job_id, j.job_title job_title, salary, d.department_name department_name
+FROM EMPLOYEES e
+JOIN JOBS j ON e.job_id = j.job_id
+JOIN DEPARTMENTS d ON e.department_id = d.department_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

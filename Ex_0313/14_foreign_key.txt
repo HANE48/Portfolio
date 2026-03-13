@@ -1,0 +1,137 @@
+외래 키(foreign key)
+- 다른 테이블의 컬럼을 참조해서 무결성을 검사하는 조건
+
+-- 외래키 확인을 위한 테이블 생성
+create table TEACHER( 
+  id number(3) primary key,
+  nickname varchar2(20),
+  name varchar2(50) not null,
+  gender varchar2(10) not null
+ );
+
+create sequence teacher_seq;
+
+-- teacher 테이블에 값 추가
+insert into teacher
+values( teacher_seq.nextval, 'hong', '홍길동', '남자' );
+
+insert into teacher
+values( teacher_seq.nextval, 'kim', '김길동', '여자' );
+
+insert into teacher
+values( teacher_seq.nextval, 'park', '박길동', '남자' );
+
+insert into teacher
+values( teacher_seq.nextval, 'song', '송길동', '남자' );
+
+commit;
+
+--  외래키 사용을 위한 강좌(lecture)
+-- check => in() 안에 들어가는 값 아니면 들어가지 않게 확인
+CREATE table LECTURE(
+  id number(3) primary key,
+  name VARCHAR2(50) not null,
+  room varchar2(50) check( room in ('A','B','C','D','E')),
+  t_id number(3) 
+);
+
+-- lecture용 시퀀스
+create sequence lecture_seq;
+
+-- lecture테이블에 t_id를 teacher의 id컬럼에 대한 외래 키로 지정
+alter table lecture 
+add foreign key( t_id )
+references teacher(id);
+
+-- lecture 테이블에 데이터 추가
+insert into LECTURE
+values( lecture_seq.nextval, 'DBMS', 'A', 1 );
+
+insert into LECTURE
+values( lecture_seq.nextval, 'JAVA', 'B', 3 );
+
+insert into LECTURE
+values( lecture_seq.nextval, 'HTML', 'D', 2 );
+commit;
+
+-- 강좌 테이블에 저장되어있는 강의들의 이름과 그 강의를 맡은 강사의 이름을 조회
+SELECT l.name, t.name, t.nickname 
+FROM LECTURE l
+JOIN TEACHER t ON l.t_id = t.id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
