@@ -1,0 +1,65 @@
+import java.io.*;
+
+/*
+ *  피보나치수열을 구하는데 행렬을 사용하여
+ *  원래 피보나치의 시간복잡도를 O(logN)으로 줄일 수 있음
+ *  A^8을 구한다 하면
+ *  A * A = A^2
+ *  A^2 * A^2 = A^4
+ *  A^4 * A^4 = A^8
+ *  과 같이 제곱을 이용하여 연산 후 n이 홀수일 경우 행렬을 한번 더 곱해주면됨
+ *  행렬에 첫번째 행에는 결과를 저장하고(N+1, N)
+ *  두 번쨰 행에는 이전 값들을 저장한다(N, N-1)
+ */
+public class Main {
+    static long n;  
+    static long[][] arr = {{1, 1}, {1, 0}}; //첫번째 행에는 피보나치의 2번째와 1번째 값을 저장하고 2행1열에는 1, 0번째 값을 저장
+    static final long M = 1_000_000_007;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        n = Long.parseLong(br.readLine());
+        if(n == 0L){
+            System.out.println(0);
+            System.exit(0);
+
+        }
+        long[][] res = pow(arr, n);
+        System.out.println(res[0][1]);
+
+    }//main
+
+    static long[][] multiply(long[][] a, long[][] b){
+        long[][] res = new long[2][2];
+        for(int i=0 ; i<a.length ; i++){
+            for(int j=0 ; j<a[i].length ; j++){
+                //결과값이 long의 최댓값을 넘지 않도록 행렬 곱셈 마다 M으로 나눠줌
+                res[i][j] = (a[i][0] * b[0][j] + a[i][1] * b[1][j]) % M;
+            }
+        }
+        
+        return res;
+    }//multiply
+
+    static long[][] pow(long[][] a, long exponent){
+        //1. exponent 즉 n값이 0이거나 1일때
+        if(exponent == 1 || exponent == 0){
+            return a;
+        }
+        //2. n/2제곱을 먼저 구하기
+        long[][] temp = pow(a, exponent/2);
+        
+        //3. temp * temp 실행(분할 정복의 핵심인 부분!)
+        temp = multiply(temp, temp);
+        
+        //4. 홀수라면 기본 행렬(a)를 한번 더 곱해주기
+        if(exponent % 2 != 0){
+            temp = multiply(temp, a);
+        }
+        
+        //결과값 반환
+        return temp;
+        
+    }//pow
+
+}
