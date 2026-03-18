@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+	<head>
+   	 	<meta charset="UTF-8">
+    	<!-- <link rel="stylesheet" href="css/reset.css"/> -->
+        <style>
+            p{
+                /* border:1px solid black; */
+                width: 150px;
+                padding: 20px;
+                background-color: #AAF;
+                border-radius: 5px;
+                /* x, y, 번지는 정도(그림자 크기), 색깔을 주면 x y 좌표에 맞춰서 나온다 */
+                box-shadow: 10px 10px 15px #333;
+            }
+
+            h1{
+                width: 150px;
+                padding: 10px;
+                background-color: #AAF;
+                /* 음수값을 주면 위로 올라감 */
+                /* inset을 사용하면 그림자 두께를 추가로 주어야하고 상자 안으로 그림자가 나온다. */
+                box-shadow: inset 5px -5px 15px 5px #333;
+            }
+            h1:hover{
+                text-shadow: 0 0 4px #cca, 0 -5px 4px #ffa, 2px -10px 6px #fda, -2px -15px 11px #f8a, 2px -19px 18px #f2a;
+            }
+        </style>
+    </head>
+
+	<body>
+        <p>content</p>
+        <h1>content</h1>
+	</body>
+
+</html>

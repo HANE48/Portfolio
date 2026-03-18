@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+	<head>
+   	 	<meta charset="UTF-8">
+    	<link rel="stylesheet" href="css/reset.css"/>
+        <style>
+            body{
+                background-color: #333;
+                color:#fff;
+            }
+
+            table{
+                width: 900px;
+                margin: 0 auto;
+            }
+
+            caption{
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            /* 태그 사이에 ','로 동시에 속성을 줄 수 있다. */
+            th, td{
+                padding: 15px;
+            }
+
+            th{
+                border-top: 1px solid #999;
+            }
+
+            th:nth-child(1), th:nth-child(2), th:nth-child(3){
+                /* 양쪽 끝에는 라인을 안그리기 위해 각각 지정 */
+                border-right: 1px solid #999;
+            }
+
+            th, tr{
+                border-bottom: 1px solid #999;
+            }
+
+            td:nth-child(1),
+            td:nth-child(2),
+            td:nth-child(3){
+                border-right: 1px solid #999;
+            }
+
+            td.aa{
+                text-align: center;
+            }
+
+            td:last-child{
+                text-align: center;
+            }
+        </style>
+	</head>
+
+	<body>
+        <table>
+            <caption>LIST FOR STORE</caption>
+            <colgroup>  
+                <!-- 각각의 컬럼에 100%에서 각 퍼센트를 할당해줌 -->
+                <col width="10%"/>
+                <col width="25%"/>
+                <col width=""/>
+                <col width="20%"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <!-- 카테고리의 제목은 th를 많이 사용함 -->
+                    <th>지역</th>
+                    <th>이름</th>
+                    <th>주소</th>
+                    <th>전화번호</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="aa">서울</td>
+                    <td >교보문고 강남점</td>
+                    <td >서울특별시 강남구 어딘가</td>
+                    <td >02-111-2222</td>
+                </tr>
+                <tr>
+                    <td class="aa">서울</td>
+                    <td >교보문고 강남점</td>
+                    <td >서울특별시 강남구 어딘가</td>
+                    <td >02-111-2222</td>
+                </tr>
+                <tr>
+                    <td class="aa">서울</td>
+                    <td >교보문고 강남점</td>
+                    <td >서울특별시 강남구 어딘가</td>
+                    <td >02-111-2222</td>
+                </tr>
+                <tr>
+                    <td class="aa">서울</td>
+                    <td >교보문고 강남점</td>
+                    <td >서울특별시 강남구 어딘가</td>
+                    <td >02-111-2222</td>
+                </tr>
+                <tr>
+                    <td class="aa">서울</td>
+                    <td >교보문고 강남점</td>
+                    <td >서울특별시 강남구 어딘가</td>
+                    <td >02-111-2222</td>
+                </tr>
+                <tr>
+                    <td class="aa">서울</td>
+                    <td >교보문고 강남점</td>
+                    <td >서울특별시 강남구 어딘가</td>
+                    <td >02-111-2222</td>
+                </tr>
+                <tr>
+                    <td class="aa">서울</td>
+                    <td >교보문고 강남점</td>
+                    <td >서울특별시 강남구 어딘가</td>
+                    <td >02-111-2222</td>
+                </tr>
+                <tr>
+                    <td class="aa">서울</td>
+                    <td >교보문고 강남점</td>
+                    <td >서울특별시 강남구 어딘가</td>
+                    <td >02-111-2222</td>
+                </tr>
+                <tr>
+                    <td class="aa">서울</td>
+                    <td >교보문고 강남점</td>
+                    <td >서울특별시 강남구 어딘가</td>
+                    <td >02-111-2222</td>
+                </tr>
+                <tr>
+                    <td class="aa">서울</td>
+                    <td >교보문고 강남점</td>
+                    <td >서울특별시 강남구 어딘가</td>
+                    <td >02-111-2222</td>
+                </tr>
+            </tbody>
+        </table>
+	</body>
+
+</html>

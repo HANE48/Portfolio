@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+	<head>
+   	 	<meta charset="UTF-8">
+    	<link rel="stylesheet" href="css/reset.css"/>
+        <style>
+            table{
+                border: 1px solid #adadad;
+                width: 900px;
+                height: 500px;
+                margin:0 auto;
+            }
+
+            thead{
+                background-color: #36f;
+                color:white;
+                height:50px;
+                border-bottom: 5px solid black;
+            }
+
+            tbody{
+                background-color: rgb(255, 255, 209);
+            }
+
+            th:nth-child(1),
+            th:nth-child(2),
+            th:nth-child(3),
+            th:nth-child(4){
+                border-right: 1px solid #c7c6c6;
+            }
+            
+            td:nth-child(1),
+            td:nth-child(2),
+            td:nth-child(3),
+            td:nth-child(4){
+                border-right: 1px solid #adadad;
+            }
+
+            tr{
+                border-bottom: 1px solid #adadad;
+            }
+
+            td:first-child{
+                border-left: solid #adadad 1px;
+            }
+
+            td:last-child{
+                border-right: solid #adadad 1px;
+            }
+
+            #aa{
+                text-align: center;
+                font-weight: bold;
+                width:200px;
+                height: 100px;
+            }
+            tr:first-child td:nth-child(2),
+            tr:first-child td:nth-child(3),
+            tr:first-child td:nth-child(4),
+            tr:first-child td:nth-child(5){
+                text-align: center;
+            }
+
+            #bb{
+                padding: 0px 10px 80px 10px;
+                width:170px;
+            }
+
+        </style>
+	</head>
+
+	<body>
+        <!-- 4행 5열 -->
+        <table>
+            <caption style="font-weight: bold; font-size: 25px;">업종별 모범거래기준 주요 내용 비교</caption>
+            <colgroup>
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="20%"/>
+            </colgroup>
+            <thead id="head">
+                <th>구분</th>
+                <th>재빵(4월)</th>
+                <th>피자(7월)</th>
+                <th>치킨(7월)</th>
+                <th>커피(12월)</th>
+            </thead>
+            <tbdoy>
+                <!-- 3행 5열 -->
+                <tr>
+                    <td id="aa">영업 지역</td>
+                    <td>500m</td>
+                    <td>1,500m</td>
+                    <td>800m</td>
+                    <td>500m</td>
+                </tr>
+                <tr>
+                    <td id="aa">광고</td>
+                    <td id="bb">관련내용 없음<br/>(분쟁없음)</td>
+                    <td id="bb">총 광고비 사전동의 <br/> 광고내역 송부 등</td>
+                    <td id="bb">총 광고비 사전동의 <br/> 광고내역 송부 등</td>
+                    <td id="bb">관련내용 없음<br/>(분쟁없음)</td>
+                </tr>
+                <tr>
+                    <td id="aa">대금 지금</td>
+                    <td id="bb">관련내용 없음<br/>(분쟁없음)</td>
+                    <td id="bb">관련내용 없음<br/>(분쟁없음)</td>
+                    <td id="bb">관련내용 없음</td>
+                    <td id="bb">월 1~2회 정산 <br/> 정산기한 최소 7일 보장</td>
+                </tr>
+                
+
+            </tbdoy>
+
+        </table>
+	</body>
+
+</html>

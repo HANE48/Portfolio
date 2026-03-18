@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+	<head>
+   	 	<meta charset="UTF-8">
+    	<link rel="stylesheet" href="css/reset.css"/>
+        <style>
+            #nav{
+                width: 1000px;
+                height: 45px;
+                padding: 6px 7px;
+                background-color: #666;
+                margin: 0 auto;
+            }
+
+            #nav > li{
+                float: left;
+                position: relative;
+                margin: 3px 10px;
+                margin-left: 80px;
+            }
+
+            #nav> li:first-child{
+                margin-left: 200px;
+            }
+
+            #nav li a{
+                display: block;
+                font:bold  16px "고딕", sans-serif;
+                color:#E7E5E5;
+                padding: 5px;
+            }
+
+            #nav li:hover a{
+                background-color: #fff;
+                color: #444;
+            }
+
+            #nav ul{
+                position: absolute;
+                left: 0;
+                top: 33px;
+                width: 150px;
+                border: 1px solid #b4b4b4;
+                display: none;
+            }
+
+            #nav li:hover ul{
+                display: block;
+            }
+
+            #nav ul a{
+                color: #333;
+            }
+
+            #nav ul li:hover a{
+                background-color: #ccc;
+                color: #fff;
+            }
+
+        </style>
+	</head>
+
+	<body>
+        <ul id="nav">
+            <li><a href="12_submenu.html">처음으로</a></li>
+            <li><a href="#">여행안내</a>
+                <ul>
+                    <li><a href="#">소개합니다.</a></li>
+                    <li><a href="#">오시는 길.</a></li>
+                </ul>
+            </li>
+            <li><a href="#">이용 방법</a>
+                <ul>
+                    <li><a href="#">객실 둘러보기</a></li>
+                    <li><a href="#">요금 안내</a></li>
+                    <li><a href="#">예약하기</a></li>
+                    <li><a href="#">예약안내</a></li>
+                </ul>
+            </li>
+            <li><a href="#">게시판</a>
+                <ul>
+                    <li><a href="#">공지사항</a></li>
+                    <li><a href="#">Q&A</a></li>
+                </ul>
+            </li>
+            <li><a href="#">내 정보</a></li>
+        </ul>
+	</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+	<head>
+   	 	<meta charset="UTF-8">
+    	<link rel="stylesheet" href="css/reset.css"/>
+        <style>
+            body{
+                margin: 10px;
+            }
+
+            #header{
+                width: 200px;
+                border:1px solid black;
+                /* fixed도 좌표를 지정해 줄 수 있음
+                 * 스크롤이 내려가도 계속 같은 자리에 있음 */
+                position: fixed;
+                left: 50px;
+                top:30px;
+            }
+
+            #container{
+                width: 300px;
+                height: 1500px;
+                background-color: #999;
+                color: #fff;
+                margin-left: 250px;
+            }
+        </style>
+	</head>
+
+	<body>
+        <div id="header">
+            <p><img src="../../resources/images/background.jpg"/></p>
+            좌측에 메뉴가 들어갈 공간
+        </div> 
+
+        <div id="container">
+            <p>주 컨텐츠</p>
+        </div>
+
+        <div id="footer">
+            <p>Copyright Allright Reserved</p>
+        </div>
+
+	</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+	<head>
+   	 	<meta charset="UTF-8">
+    	<!-- <link rel="stylesheet" href="css/reset.css"/> -->
+         <style>
+            .ex{
+                width: 100px;
+                height: 100px;
+                background-color: #aaf;
+                border-radius: 0px;
+
+                transition-property: background, border-radius;
+                /* 2초에 걸쳐서 변경 */
+                transition-duration:2s;
+                /* 2초 후에 시작 */
+                transition-delay: 0.5s;
+                /* webkit 은 크롬, 사파리에서 적용 */
+                -webkit-transition-property: background, border-radius;
+                -webkit-transition-duration:2s;
+                -webkit-transition-delay: 0.5s;
+                /* moz 파이어폭스에서 인식 못할 때 적용 */
+                -moz-transition-property: background, border-radius;
+                -moz-transition-duration:2s;
+                -moz-transition-delay: 0.5s;
+                
+                /* -o- 오페라브라우저
+                 * -ms- 익스플로러 */
+
+            }
+
+            .ex:hover{
+                background-color: blue;
+                border-radius: 50px;
+            }
+         </style>
+	</head>
+
+	<body>
+        <p>도형 위로 마우스를 올려!</p>
+        <div class="ex"></div>
+	</body>
+
+</html>

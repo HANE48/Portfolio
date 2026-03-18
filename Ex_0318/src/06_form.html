@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+	<head>
+   	 	<meta charset="UTF-8">
+    	<link rel="stylesheet" href="css/reset.css"/>
+	</head>
+
+	<body>
+        <!-- input은 인라인 요소라 <p>로 포장함 -->
+        <!-- action: submit을 통해 지정된 파일로 전송 및 이동할 페이지 -->
+        <!-- method: 전송방식을 말하며 get이 공개방식 -->
+        <!-- post로 지정하면 파라미터를 숨겨서 전달 -->
+        <form action="test.html">
+            <p>
+                입력상자: <input type="text"/>
+            </p>
+            <p> 
+                <!-- 파라미터를 전달할 식별자를 name으로 정함 -->
+                ID: <input type="text" size="10" name="myid"/>
+                <br/>
+                PW: <input type="password" size="10" name="pw"/>
+            </p>
+            <p>
+                <input type="submit" value="전송">
+                <input type="reset" value="취소">
+            </p>
+            <p>
+                메일 수신여부
+                <br/>
+                <!-- radio 타입은 name=value 값을 전송함 -->
+                <input type="radio" value="Y" name="receive"/>예<br/>
+                <input type="radio" value="N" name="receive"/>아니오<br/>
+            </p>
+
+            <p>
+                file
+                <input type="file" name="file"/>
+            </p>
+
+            <p>
+                <select name="subject" >
+                    <option value="html5">HTML5</option>
+                    <option value="css3">CSS3</option>
+                    <option value="js">JavaScript</option>
+                    <option value="react">React</option>
+                </select>
+            </p>
+
+        </form>
+	</body>
+
+</html>
