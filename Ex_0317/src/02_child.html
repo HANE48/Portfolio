@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>자식 선택자</title>
+    <style>
+        /* '>'를 넣으면 직계자식만 고름 */
+        #header > h1{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- header안에서 자식은 h1, div 자손은 nav안의 h1 -->
+    <div id="header">
+        <h1>자식 선택자</h1>
+        <div id="nav">
+            <h1>자식 선택자</h1>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .box{
+            width: 250px;
+            border: 1px solid red;
+            margin: 70px;
+            position:relative;
+        }
+
+        p{
+            width: 130px;
+            height: 80px;
+            padding: 10px;
+            color:white;
+        }
+
+        .red{
+            background-color: red;
+        }
+
+        .blue{
+            background-color: blue;
+            /* 똑같은 자리에서 위로만 올라온 느낌,,,,? 
+             * position:absolute;를 사용하면 box로 부터 독립해 body 소속이 됨 
+             * postion:relative;로 부모를 다시 찾아줄 수 있음
+             * blue에 left, top 속성을 추가하니 .box를 부모로 인지하지 못하고 영역 밖으로 벗어남
+             * 그래서 position:relative로 부모님을 찾아줄 수 있다.
+             */
+            position:absolute;
+            /* 가장 왼쪽 위부터 0px임 */
+            left: 50px;
+            top: 30px;
+        }
+
+        .green{
+            background-color: green;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p class="red">position 1</p>
+        <p class="blue">position 2</p>
+        <p class="green">position 3</p>
+    </div>
+</body>
+
+</html>

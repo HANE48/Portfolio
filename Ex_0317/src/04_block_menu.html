@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- alt + shift + 아래버튼 누르면 라인이 복사가 됨-->
+<head>
+    <meta charset="UTF-8">
+    <style>
+        *{margin: 0px; padding: 0px;}
+
+        ul{
+            text-align: center;
+            width:130px;
+            margin: 0 auto 0;
+        }
+
+        li{
+            list-style: none;
+        }
+
+        a{  
+            /* a태그의 밑줄을 제거 기본값은 underline임 */
+            text-decoration: none;
+            background: #F30;
+            padding: 5px;
+            display: block;
+            /* 위아래로 3픽셀 좌우로 0픽셀 */
+            margin:3px 0;
+            color:#fff;
+            font-weight: bold;
+        }
+
+        /* ':' 가상 클래스 a태그에 마우스를 얹었을 때 동작하는 css*/
+        a:hover{
+            background: #0c0;
+            color: yellow;
+        }
+
+        /* 클릭을 감지하는 가상 클래스, 호버보다 아래에 있어야 동작하니 주의!!*/
+        a:active{
+            color:pink;
+        }
+    </style>
+</head>
+<body>
+    <diV id="box">
+        <h1 style="text-align: center;">Menu</h1>
+        <ul>
+            <li><a href=#>company</a></li>
+            <li><a href=#>product</a></li>
+            <li><a href=#>service</a></li>
+            <li><a href=#>community</a></li>
+        </ul>
+    </diV>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- 정렬하는데 가장 중요한 요소 -->
+<head>
+    <meta charset="UTF-8">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #header{
+            margin: 10px auto;
+            width: 500px;
+            border: 3px solid #caa;
+            background-color: #fdd;
+            overflow: auto;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        /* float는 2가지 속성밖에 없음 
+         * 자식클래스가 float를 가지고 있으면
+         * 부모에서 overflow를 사용한다.
+         */
+        .c1{
+            width:200px;
+            padding: 15px;
+            background-color: #dda;
+            float: left;
+        }
+
+        .c2{
+            width:200px;
+            padding: 15px;
+            background-color: #ba7;
+            float:right;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h1>float 연습</h1>
+        <div class="c1">
+            내용 left
+        </div>
+        <div class="c2">
+            내용 right
+        </div>
+    </div>
+</body>
+
+</html>

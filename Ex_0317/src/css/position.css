@@ -1,0 +1,42 @@
+#header{
+    width: 1000px;
+    height: 80px;
+    border: 1px solid red;
+    margin:10px auto;
+    position:relative;
+}
+
+p.aa {
+    position:absolute;
+    left: 0;
+    top: 7px;
+}
+
+ul{
+    overflow:hidden;
+}
+
+li{
+    float: left;
+}
+
+p{
+    position:absolute;
+    right: 10px;
+    top: 5px;
+}
+
+ul.a1{
+    /* 맨 윗줄을 담당 */
+    position: absolute;
+    left: 350px;
+    top: 10px;
+}
+
+ul.a2{
+    /* 두번째 줄을 담당 */
+    position: absolute;
+    left: 255px;
+    top: 40px
+}
+

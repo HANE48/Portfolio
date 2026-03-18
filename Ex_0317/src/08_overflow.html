@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- 영역을 벗어난 모양에 대한 처리 -->
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p{
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+        }
+
+        .cls1{
+            /* 영역을 벗어나는 텍스트는 자름 */
+            overflow:hidden;
+        }
+
+        .cls2{
+            /* 영역을 벗어나는 텍스트를 스크롤로 볼수 있게 표시 */
+            /* 내용이 넘치지 않아도 표시함 */
+            overflow: scroll;
+        }
+
+        .cls3{
+            /* 내용으 넘칠때만 스크롤로 표시 */
+            overflow: auto;
+        }
+
+        .cls4{
+            /* 영역의 크기에 상관없이 다 보여줌 
+             * 기본값 */
+            overflow: visible;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p class="cls1">
+        All the colors and personalities
+        you cant see right through what I truly am
+        youre hurting me without noticing
+        Im so, so broke like someone just robbed me
+        Im no invincible
+        I have much memories of getting more weaker
+        I know Im not loveable
+        but you know what youd have to say
+    </p>
+    <p class="cls2">
+        Come on lets go to bed
+        we gonna rock the night away
+        who did that to you, babe
+        If youre not in the right mood to sleep now then,
+        Come on, lets drink and have very unmanageable day
+        would you want me in bae
+        If youre not in the right mood to sleep now then
+        come take my arms and go
+        I'II be yours for sure
+    </p>
+    <p class="cls3">
+        All the traces and reminiscences
+        You cant sense right through how I truly was
+        You were gripping me without noticing
+        Was so, so strange like Someone never loved me
+        <br/>
+        Im no invincible
+        I have much memories of getting more weaker
+        I know Im not loveable
+        but you know what youd have to say
+    </p>
+    <p class="cls4">
+        Come on lets go to bed
+        we gonna rock the night away
+        who did that to you, babe
+        If youre not in the right mood to sleep now then,
+        Come on, lets drink and have very unmanageable day
+        would you want me in bae
+        If youre not in the right mood to sleep now then
+        come take my arms and go
+        I'II be yours for sure
+    </p>
+</body>
+
+</html>

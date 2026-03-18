@@ -1,0 +1,47 @@
+#menu{
+    background-color: black;
+    overflow: hidden;
+    width: 350px;
+    margin: 30px auto;
+    font-weight: bold;
+}
+
+li{
+    list-style: none;
+}
+
+#menu > li{
+    float: left;
+}
+
+#menu li a{
+    color: #FFF;
+    text-decoration: none;
+    display: block;
+    padding: 20px;
+}
+
+#menu > li > a:hover{
+    background-color: #555;
+}
+
+#sub-menu{
+    position:absolute;
+    background-color: black;
+    color: white;
+    display: none;
+    text-align: left;
+}
+
+#menu li:hover #sub-menu{
+    display: block;
+    top: 75px;
+    left: 230px;
+}
+
+#sub:hover{
+    background-color: #555;
+}
+
+
+
